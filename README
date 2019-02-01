@@ -1,0 +1,21 @@
+### Web Components
+
+This is example for web components
+
+### Fast start
+```sh
+# Clone the repository
+$ git clone https://github.com/njiyto/web_components.git
+
+# Build app for dev
+$ node ./server.js
+```
+
+### Contribution
+everytime check email:
+```
+$ git config user.email
+$ git config user.email 'example@mail'
+$ git remote -v
+$ git remote set-url
+```
