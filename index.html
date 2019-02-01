@@ -5,8 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script>
+    class Input extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const placeholder = this.getAttribute("placeholder") || '';
+        const name = this.getAttribute("name") || '';
+        const error = this.hasAttribute("error") ? 'error' : '';
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML = `
+          <style>
+            .error input {color: red; border-bottom: 1px solid red;}
+            .container {margin-bottom: 10px}
+            input {
+              height: 18px;
+              font-size: 14px;
+              border: none;
+              border-bottom: 1px solid #ccc;
+              padding: 6px 10px;
+              width: 100%;
+              box-sizing: border-box;
+            }
+          </style>
+          <div class="container">
+            <div class="input ${error}"> <input placeholder="${placeholder}" /> </div>
+          </div>
+        `;
+      }
+    }
+    window.customElements.define('my-input', Input);
+
+    class Button extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const color = this.getAttribute("color") || 'red';
+        const text = this.getAttribute("text") || 'send';
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML = `
+          <style>
+            .btn {
+              background: ${color};
+              cursor: pointer;
+              color: #fff;
+              padding: 8px 20px;
+              border-radius: 6px;
+              width: 100%;
+              text-align: center;
+              box-sizing: border-box;
+              margin-top: 20px;
+            }
+          </style>
+          <div class="btn"> ${text} </div>
+        `;
+      }
+    }
+    window.customElements.define('my-button', Button);
+  </script>
 </head>
+
 <body>
-  hello world
+  <div style="width: 200px; margin: 100px auto 0;">
+    <my-input placeholder="first name" error></my-input>
+    <my-input placeholder="last name"></my-input>
+    <my-input name="last_name"></my-input>
+    <my-button color="#0aaad4" text="Send"> </my-button>
+  </div>
 </body>
 </html>
