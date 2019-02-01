@@ -16,6 +16,7 @@
         const name = this.getAttribute("name") || '';
         const error = this.hasAttribute("error") ? 'error' : '';
         const shadowRoot = this.attachShadow({mode: 'open'});
+
         shadowRoot.innerHTML = `
           <style>
             .error input {color: red; border-bottom: 1px solid red;}
